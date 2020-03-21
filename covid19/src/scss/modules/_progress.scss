@@ -1,0 +1,50 @@
+.covid19__progress-container {
+  display: flex;
+  flex-direction: row;
+  h3 {
+    margin-left: 15px;
+  }
+  .date-selector {
+    padding-top: 15px;
+  }
+  .nav {
+    .nav-link {
+      &:hover, &.active {
+        background-color: $primary;
+        color: $gray-100;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      background-color: $gray-300;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      color: $body-color;
+      transition: all 0.2s linear;
+    }
+    display: block;
+    height: calc(100vh - 221px);
+    overflow-y: scroll;
+    padding-right: 15px;;
+  }
+  .content {
+    padding-top: 15px;
+    margin-left: 15px;
+    h3 {
+      margin-left: 0;
+    }
+  }
+  .growth {
+    padding-top: 15px;
+    width: 60%;
+    margin-left: 15px;
+    padding-left: 15px;
+    border-left: 1px solid $gray-300;
+    h3 {
+      margin-left: 0;
+    }
+    .recharts-wrapper {
+      width: 100% !important;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "date_format": "DD/MM/YYYY",
+  "time_format": "HH:mm",
+  "human_datetime_format": "dddd DD MMMM [alle] HH:mm"
+}

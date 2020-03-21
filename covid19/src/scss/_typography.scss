@@ -1,0 +1,35 @@
+
+h1, h2, h3, h4, h5, h6 {
+  .small {
+    display: inline !important;
+    font-size: 60%;
+  }
+  font-family: 'Barlow', sans-serif;
+  margin-top: 0;
+  word-break: break-word;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5, h6 {
+  font-size: 1.2rem;
+}
+
+p {
+  line-height: 1.5;
+  margin: 15px 0;
+}

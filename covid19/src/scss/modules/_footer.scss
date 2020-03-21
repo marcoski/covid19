@@ -1,0 +1,24 @@
+footer {
+  padding: 10px 0;
+  color: $gray-200;
+  background-color: $gray-800;
+  font-size: 0.8rem;
+  .row {
+    align-items: center;
+  }
+  a {
+    &:hover {
+      color: $gray-100;
+    }
+    color: $gray-200;
+    font-weight: 800;
+  }
+  .github { 
+    text-align: right;
+    font-size: 1rem;
+  }
+  .license {
+    font-size: 0.8rem;
+    margin-right: 10px;
+  }
+}

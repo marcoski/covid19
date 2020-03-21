@@ -1,0 +1,59 @@
+.covid19__map-container {
+  display: flex;
+  flex-direction: row;
+  .bottom {
+    width: 60%;
+    margin-left: auto;
+  }
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    width: 77%;
+    margin-left: 15px;
+    .content {
+      display: flex;
+      flex-direction: row;
+    }
+    .grow {
+      margin-top: 15px;
+    }
+  }
+  .map {
+    svg {
+      overflow: visible;
+    }
+    height: calc(100vh - 159px);
+    width: 33%;
+    overflow: hidden;
+  }
+  .summary,
+  .aggregate {
+    width: 100%;
+    margin-top: 15px;
+  }
+  .aggregate {
+    h3 {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      span,
+      a {
+        display: block;
+      }
+      a {
+        &:hover {
+          color: $gray-700;
+          text-decoration: none;
+        }
+        font-size: 1.2rem;
+        color: $gray-500;
+        margin-left: auto;
+      }
+      width: 100%;
+    }
+    .VictoryContainer,
+    .VictoryContainer svg {
+      height: calc(100vh - 250px) !important;
+    }
+  }
+}

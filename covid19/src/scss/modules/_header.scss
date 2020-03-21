@@ -1,0 +1,15 @@
+.covid19__header {
+  .navbar-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .title {
+      margin-left: 10px;
+      h1 {
+        font-size: 1.8rem;
+        line-height: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
