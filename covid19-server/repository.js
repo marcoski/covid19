@@ -18,7 +18,7 @@ const writeJsonData = (dataFilePath, data) => {
 const clone = () => {
   if (!fs.existsSync(path.resolve(__dirname, './repository'))) {
     logger.info('clone %s git repository', DATA_REPOSITORY)
-    return git.clone(DATA_REPOSITORY, path.resolve(__dirname, './repository'))
+    return git().clone(DATA_REPOSITORY, path.resolve(__dirname, './repository'))
   }
   return Promise.resolve()
 }
