@@ -13,7 +13,7 @@ const DateSelector = ({ active, dates, dateFormat, onSelect }) => {
         {dates.map(k => (
           <Nav.Link key={k.unix()} eventKey={k.unix()} onSelect={handleSelect}>
             <span className="far fa-calendar-alt mr-2"></span>
-            {k.format(dateFormat)}
+            <span>{k.format(dateFormat)}</span>
           </Nav.Link>
         ))}
       </Nav>
@@ -31,11 +31,11 @@ const ProgressContainer = ({ data, region }) => {
         <>
           <DateSelector active={active.key} dates={dates} dateFormat={dateFormat} onSelect={onSelectDate} />
           <div className="content">
-            <h3>Situazione { region ? region.denominazione_regione : 'Nazionale' } del {active.key.format(dateFormat)}</h3>
+            <h3>{ region ? region.denominazione_regione : 'Nazionale' } @ {active.key.format(dateFormat)}</h3>
             <DataList data={active.data} prev={active.prev} />
           </div>
           <div className="growth">
-            <h3>Tasso di crescita su {numDates} giorni</h3>
+            <h3>Tasso di crescita ({numDates} giorni)</h3>
             <GrowthRates data={data} active={active} dates={dates} />
           </div>
         </>

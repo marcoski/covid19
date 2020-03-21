@@ -78,7 +78,7 @@ const CovidMapContainer = ({ data, prev, lastUpdateStr, summary, prevSummary, da
           <div className="content-container">
             <div className="content">
               <div className="summary">
-                <h3>Situazione Nazionale <span className="small">@ {lastUpdateStr}</span></h3>
+                <h3>Nazionale <span className="small">@ {lastUpdateStr}</span></h3>
                 <DataList data={summary} prev={prevSummary} radio />
               </div>
               <div className="aggregate">
