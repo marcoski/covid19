@@ -28,9 +28,11 @@ function *clearData() {
 
 export function *watcher() {
   while(true) {
+    yield put({ type: "REQUEST"})
     const action = yield take('GET_DATA_MSG')
     yield call(readDataByDate, action)
     yield call(readDataByAggregate, action)
+    yield put({ type: "SUCCESS" })
     yield take('CLEAR_DATA_MSG')
     yield call(clearData)
   }

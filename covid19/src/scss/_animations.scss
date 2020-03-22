@@ -1,0 +1,23 @@
+.rotate {
+  animation: rotation 2s infinite linear;
+}
+
+.loading-spinner {
+  *{
+    display: block;
+  }
+  img {
+    margin-left: 15px;
+    margin-bottom: 15px;
+  }
+  text-align: center;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

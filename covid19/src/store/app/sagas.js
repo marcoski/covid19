@@ -27,8 +27,10 @@ function* changeFilters({ filters }) {
 
 export function* watcher() {
   while (true) {
+    yield put({ type: "REQUEST" })
     yield take('GET_APP_DATA_MSG')
     yield call(appData)
+    yield put({ type: "SUCCESS" })
   }
 }
 

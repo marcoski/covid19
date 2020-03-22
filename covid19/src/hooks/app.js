@@ -21,6 +21,7 @@ export const useApp = () => {
   const view = match === null ? 'italia' : match[1]
   const lastUpdate = useSelector(state => state.app.lastUpdate)
   const regions = useSelector(state => state.app.regions)
+  const loading = useSelector(state => state.request.loading)
   const dispatch = useDispatch()
 
   const handleAppData = useCallback(() => {
@@ -44,6 +45,7 @@ export const useApp = () => {
 
 
   return {
+    loading,
     lastUpdate,
     regions
   }

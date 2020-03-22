@@ -1,18 +1,18 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Header from './Header';
 import Container from 'react-bootstrap/Container'
 import Italy from '../pages/Italy';
 import Regions from '../pages/Regions';
-import Districts from '../pages/Districts';
 import Footer from './Footer';
-
+import LoadingOverlay from 'react-loading-overlay'
 import { useApp } from '../hooks/app'
+import CovidSpinner from '../components/CovidSpinner';
 
 const Body = () => {
-  const { lastUpdate, regions } = useApp()
+  const { lastUpdate, regions, loading } = useApp()
   return (
-    <>
+    <LoadingOverlay active={loading} spinner={<CovidSpinner />}>
       {regions &&
         <>
           <Header regions={regions} />
@@ -30,7 +30,7 @@ const Body = () => {
           <Footer lastUpdate={lastUpdate} />
         </>
       }
-    </>
+    </LoadingOverlay>
   )
 }
 
