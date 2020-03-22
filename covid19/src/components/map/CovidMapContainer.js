@@ -95,14 +95,7 @@ const CovidMapContainer = ({ data, prev, lastUpdateStr, summary, prevSummary, da
                 }
               </div>
             </div>
-            <div className="grow">
-              <h3>Incrementi giornalieri</h3>
-              <DailyGrow 
-                data={dataByDate} 
-                aggregate={dataAggregateByDate} 
-                currentAggregate={currentAggregate}  
-              />
-            </div>
+            <DailyGrow data={dataByDate} aggregate={dataAggregateByDate} currentAggregate={currentAggregate} />
           </div>
         </>
       }

@@ -36,7 +36,6 @@ export const useRegionsData = region => {
   const byDate = useSelector(state => region && regionSelectorByDate(state, region.denominazione_regione))
   const byAggregate = useSelector(state => region && regionSelectorByAggregate(state, region.denominazione_regione))
   const { key, onChangeKey } = useTabs('regioni')
-  console.log(byAggregate)
   return {
     key: key,
     dataByDate: byDate,

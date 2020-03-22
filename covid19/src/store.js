@@ -6,7 +6,7 @@ import reducers from './store/reducers'
 import rootSaga from './rootSaga'
 
 const saga = createSagaMiddleware()
-const middlewares = [logger, saga]
+const middlewares = [/*logger,*/ saga]
 
 export const configStore = (initialState = {}) => {
   const store = createStore(

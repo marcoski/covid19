@@ -11,7 +11,7 @@ const GrowthRates = ({ data, dates, active }) => {
   const { filters } = useFilters(false)
   const dateFormat = useSelector(state => intlSelector(state, 'date_format'))
   const elements = getLineChartKeysMap(filters)
-  const graphData = getObjectData(data, elements, dateFormat, active)
+  const graphData = getObjectData(data, filters, dateFormat, active)
   return (
     <ResponsiveContainer width="100%" height={400}>
       <LineChart data={graphData}>

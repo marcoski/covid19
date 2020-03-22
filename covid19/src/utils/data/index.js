@@ -39,11 +39,11 @@ export const getLineChartKeysMap = (filters = []) => Object.keys(keysMap)
   .map(key => ({ key: key, label: keysMap[key], fill: colorMap[key] }))
   .filter(el => filters.includes(el.key))
 
-export const getObjectData = (data, elements, dateFormat, active) => {
+export const getObjectData = (data, filters, dateFormat, active) => {
   const graph = Object.keys(data).map(k => {
     const obj = { name: moment(k).format(dateFormat) }
-    for (const el of elements) {
-      obj[el.key] = data[k][el.key]
+    for (const el of filters) {
+      obj[el] = data[k][el]
     }
     return obj
   })
@@ -55,3 +55,12 @@ export const getYAxisDomain = (data, elements) => {
   const lastData = data[Object.keys(data)[Object.keys(data).length - 1]]
   return [0, Math.max(...elements.map(el => lastData[el.key]))]
 }
+
+export const getLogarithmicObjectData = data => data.map(d => {
+  for(const key of Object.keys(d)) {
+    if(!isNaN(d[key]) && !(d[key] > 0)) {
+      d[key] = 1
+    }
+  }
+  return d
+})
