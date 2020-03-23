@@ -27,8 +27,8 @@ const Italy = ({ lastUpdate }) => {
             eventKey="by-aggregate" 
             title={
               <>
-                <span className="fas fa-map-marker-alt mr-2"></span>
-                Mappa
+                <span className="fas fa-tachometer-alt mr-2"></span>
+                Panoramica
               </>
             }
           >

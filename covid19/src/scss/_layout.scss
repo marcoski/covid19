@@ -100,3 +100,16 @@
     }
   }
 }
+
+.nav-tabs .nav-link {
+  color: $brand-color;
+  border-radius: 0;
+}
+
+.dropdown-menu {
+  border-radius: 0;
+}
+
+.covid19__popover {
+  border-radius: 0;
+}

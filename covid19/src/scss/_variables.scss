@@ -1,16 +1,19 @@
 // COLORI
-$deepBlue: #234787;
-$darkBlue: #142a50;
-$lightBlue: rgb(56, 142, 205);
+$brand-color: #cf2325;
+$brand-secondary: #29292d;
 
-$strongOrange: #f14624;
-$lightOrange: #f77c6c;
+$deepBlue: $brand-secondary;
+$darkBlue: $brand-secondary;
+$lightBlue: lighten($deepBlue, 30);
 
-$widgetOrange: #f96854;
+$strongOrange: #cf2325;;
+$lightOrange: lighten($strongOrange, 0.5);
+
+$widgetOrange: $brand-color;
 $greyOrange: #e67e6f;
 
 $widgetOrangeAlpha: rgba(red($strongOrange), green($strongOrange), blue($strongOrange), 0.8);
-$darkBlueAlpha: rgba(red($lightBlue), green($lightBlue), blue($lightBlue), 0.8);
+$darkBlueAlpha: rgba($lightBlue, 0.8);
 
 // CLASSI
 %images-style {

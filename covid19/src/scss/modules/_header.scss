@@ -1,14 +1,55 @@
 .covid19__header {
-  .navbar-brand {
+  background-color: $brand-color;
+  color: #fff;
+  .navbar-collapse {
+    .nav-link {
+      &.active,
+      &:hover,
+      &:focus,
+      &:active {
+        color: $white !important;
+      }
+      font-weight: bold;
+      color: $white;
+    }
+  }
+  .brand {
     display: flex;
     flex-direction: row;
     align-items: center;
-    .title {
-      margin-left: 10px;
-      h1 {
-        font-size: 1.8rem;
-        line-height: 0;
-        margin-bottom: 0;
+    color: $white;
+    width: 100%;
+    a {
+      &:hover {
+        color: $white;
+        text-decoration: none;
+      }
+      img {
+        margin-top: 3px;
+      }
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: $white;
+      .title {
+        margin-left: 10px;
+        h1 {
+          font-size: 1.8rem;
+          line-height: 0;
+          margin-bottom: 0;
+        }
+      }
+    }
+    .subtitle {
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 0.9rem;
+      img {
+        display: block;
+        height: 40px;
+        width: 100%;
       }
     }
   }

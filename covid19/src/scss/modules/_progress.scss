@@ -13,7 +13,7 @@
         display: block;
       }
       &:hover, &.active {
-        background-color: $primary;
+        background-color: $brand-color;
         color: $gray-100;
       }
       &:last-child {
@@ -24,7 +24,6 @@
       align-items: center;
       background-color: $gray-300;
       margin-bottom: 5px;
-      border-radius: 5px;
       color: $body-color;
       padding: 5px 10px;
       font-size: 15px;
