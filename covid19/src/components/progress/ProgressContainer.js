@@ -1,6 +1,7 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import Nav from 'react-bootstrap/Nav'
-import { useProgress } from '../../hooks/progress'
+import Select from 'react-select'
+import { useProgress, useProgressRegion } from '../../hooks/progress'
 import DataList from '../DataList'
 import GrowthRates from '../charts/GrowthRates'
 
@@ -22,7 +23,49 @@ const DateSelector = ({ active, dates, dateFormat, onSelect }) => {
   )
 }
 
-const ProgressContainer = ({ data, region }) => {
+export const ProgressRegionContainer = ({ data, region, regions, regionsData }) => {
+  const { 
+    dates, dateFormat, active, onSelectDate, selectOptions, aggregate, onSetAggregate 
+  } = useProgressRegion(data, regions, regionsData)
+  const numDates = active !== null ? dates.filter(date => date.isSameOrBefore(active.key)).length : 0
+  const handleSelectRegion = ({ value }) => onSetAggregate(value)
+  return (
+    <div className="covid19__progress-container">
+      {data && active !== null &&
+        <>
+          <DateSelector active={active.key} dates={dates} dateFormat={dateFormat} onSelect={onSelectDate} />
+          <div className="content">
+            <div className="views">
+              <div className="view">
+                <div className="view-title">
+                  <h3>{region.denominazione_regione} @ {active.key.format(dateFormat)}</h3>
+                  <div className="selector">
+                    <Select
+                      className="select"
+                      options={selectOptions}
+                      placeholder="Compara regione..."
+                      onChange={handleSelectRegion}
+                    />
+                  </div>
+                </div>
+                <DataList data={active.data} prev={active.prev} />
+              </div>
+              {aggregate !== null &&
+                <div className="view aggregate">
+                  <h3>{aggregate.info.denominazione_regione} @ {active.key.format(dateFormat)}</h3>
+                  <DataList data={aggregate.data} prev={aggregate.prev} />
+                </div>
+              }
+            </div>
+            <GrowthRates data={data} active={active} dates={numDates} aggregate={aggregate} />
+          </div>
+        </>
+      }
+    </div>
+  )
+}
+
+const ProgressContainer = ({ data }) => {
   const { dates, dateFormat, active, onSelectDate } = useProgress(data)
   const numDates = active !== null ? dates.filter(date => date.isSameOrBefore(active.key)).length : 0
   return (
@@ -31,12 +74,13 @@ const ProgressContainer = ({ data, region }) => {
         <>
           <DateSelector active={active.key} dates={dates} dateFormat={dateFormat} onSelect={onSelectDate} />
           <div className="content">
-            <h3>{ region ? region.denominazione_regione : 'Nazionale' } @ {active.key.format(dateFormat)}</h3>
-            <DataList data={active.data} prev={active.prev} />
-          </div>
-          <div className="growth">
-            <h3>Tasso di crescita ({numDates} giorni)</h3>
-            <GrowthRates data={data} active={active} dates={dates} />
+            <div className="views">
+              <div className="view">
+                <h3>Nazionale @ {active.key.format(dateFormat)}</h3>
+                <DataList data={active.data} prev={active.prev} />
+              </div>
+            </div>
+            <GrowthRates data={data} active={active} dates={numDates} />
           </div>
         </>
       }

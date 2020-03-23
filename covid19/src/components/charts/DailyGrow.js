@@ -4,6 +4,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts'
 import { useDailyGrow } from './hooks/dailygrow'
+import CovidLegend from './CovidLegend'
 
 
 const DailyGrow = ({ data, aggregate, currentAggregate }) => {
@@ -13,10 +14,10 @@ const DailyGrow = ({ data, aggregate, currentAggregate }) => {
     <div className="grow">
       <div className="charts-title">
         <h3>Incrementi giornalieri</h3>
-        <div className="scale-selector">
+        <div className="selector">
           <span className="text">Scala</span>
           <Select
-            className="scale-select"
+            className="select"
             options={selectOptions}
             onChange={handleSetLog}
             value={selectValue()}
@@ -24,7 +25,7 @@ const DailyGrow = ({ data, aggregate, currentAggregate }) => {
         </div>
       </div>
       {elements !== null &&
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={500}>
           <LineChart data={graphData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
@@ -33,7 +34,7 @@ const DailyGrow = ({ data, aggregate, currentAggregate }) => {
               return <YAxis />
             }())}
             <Tooltip />
-            <Legend verticalAlign="top" height={36} />
+            <Legend verticalAlign="top" height={36} content={CovidLegend()} />
             {elements.map(el => (<
               Line strokeWidth={2} key={el.key} name={el.label} type="monotone" dataKey={el.key} stroke={el.fill} />
             ))}

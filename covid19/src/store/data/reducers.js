@@ -4,6 +4,7 @@ import { createReducers } from '../../utils/redux'
 const dataReducer = createReducers({}, {
   [C.DATA.READ_BY_DATE]: (data, action) => ({ ...data, byDate: action.data }),
   [C.DATA.READ_BY_AGGREGATE]: (data, action) => ({ ...data, byAggregate: action.data }),
+  [C.DATA.READ_REGION_AGGREGATE]: (data, action) => ({ ...data, byRegionAggregate: action.data }),
   [C.DATA.CLEAR]: () => ({})
 })
 

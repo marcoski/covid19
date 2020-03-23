@@ -20,10 +20,10 @@ const Body = () => {
             <Route exact path="/">
               <Italy lastUpdate={lastUpdate} />
             </Route>
-            <Route path="/regioni/:id" component={
+            <Route path="/regioni/:slug" component={
               ({ match }) => {
-                const region =Object.keys(regions).map(r => regions[r]).find(r => r.codice_regione === parseInt(match.params.id))
-                return <Regions lastUpdate={lastUpdate} region={region} />
+                const region = Object.keys(regions).map(r => regions[r]).find(r => r.slug === match.params.slug)
+                return <Regions lastUpdate={lastUpdate} region={region} regions={regions} />
               }
             } />
           </Container>

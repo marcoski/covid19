@@ -3,19 +3,18 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
 import { useRegionsData } from '../hooks/data'
 import { useSelector } from 'react-redux'
 import { intlSelector } from '../utils/i18n'
 import moment from 'moment'
 import CovidRegionMapContainer from '../components/map/CovidRegionMapContainer'
-import ProgressContainer from '../components/progress/ProgressContainer'
+import { ProgressRegionContainer } from '../components/progress/ProgressContainer'
 
-const Regions = ({ lastUpdate, region }) => {
+const Regions = ({ lastUpdate, region, regions }) => {
   const lastUpdateStr = moment(lastUpdate).format(useSelector(state => intlSelector(state, 'date_format')))
   const {
-    key, onChangeKey, dataAggregateByDate, prevDataByAggregate, dataByDate, dataByAggregate, summary, prevSummary
+    key, onChangeKey, dataAggregateByDate, prevDataByAggregate, dataByDate, 
+    dataByAggregate, summary, prevSummary, byRegionAggregate
   } = useRegionsData(region)
   const handleChangeTab = key => onChangeKey(key)
   return (
@@ -56,7 +55,12 @@ const Regions = ({ lastUpdate, region }) => {
                   </>
                 }
               >
-                <ProgressContainer data={dataByDate} region={region} />
+                <ProgressRegionContainer 
+                  data={dataByDate} 
+                  region={region} 
+                  regions={regions} 
+                  regionsData={byRegionAggregate}  
+                />
               </Tab>
             </Tabs>
           </>

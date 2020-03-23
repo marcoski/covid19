@@ -5,8 +5,9 @@ import { useFilters } from "../../../hooks/filters"
 import { useSelector } from "react-redux"
 import { intlSelector } from "../../../utils/i18n"
 import { getLineChartKeysMap, getObjectData, getLogarithmicObjectData } from "../../../utils/data"
+import { useLogarithmic } from "./logarighmic"
 
-const getDataAggregateChartData = (data, aggregate, dateFormat, currentAggregate, filters) => {
+export const getDataAggregateChartData = (data, aggregate, dateFormat, currentAggregate, filters) => {
   return data.map(el => {
     const { name, ...rest } = aggregate[moment(el.name, dateFormat).format('YYYY-MM-DD')]
     const elementsData = filters.map(filter => ({
@@ -16,7 +17,7 @@ const getDataAggregateChartData = (data, aggregate, dateFormat, currentAggregate
   })
 }
 
-const getDataAggregateKeysMap = (filters, currentAggregate) => {
+export const getDataAggregateKeysMap = (filters, currentAggregate) => {
   const elements = getLineChartKeysMap(filters)
   if (!elements[0]) return []
   const aggregateKeysMap = {
@@ -28,15 +29,14 @@ const getDataAggregateKeysMap = (filters, currentAggregate) => {
 }
 
 export const useDailyGrow = (data, aggregate, currentAggregate) => {
-  const selectOptions = [{ value: false, label: 'Lineare' }, { value: true, label: 'Logaritmica' }]
-  const [log, setLog] = useState(false)
+  const { log, selectOptions, onSetLog, selectValue } = useLogarithmic()
   const [graphData, setGraphData] = useState(null)
   const [elements, setElements] = useState(null)
   const { filters } = useFilters()
   const dateFormat = useSelector(state => intlSelector(state, 'date_format'))
 
   const handleSetLog = useCallback(log => {
-    setLog(log)
+    onSetLog(log)
     setGraphData(getLogarithmicObjectData(graphData))
   }, [graphData, log])
 
@@ -54,7 +54,7 @@ export const useDailyGrow = (data, aggregate, currentAggregate) => {
 
   useEffect(() => {
     if (currentAggregate && currentAggregate !== '') {
-      setLog(true)
+      onSetLog(true)
       const gdata = getDataAggregateChartData(
         getObjectData(data, filters, dateFormat),
         aggregate,
@@ -70,9 +70,9 @@ export const useDailyGrow = (data, aggregate, currentAggregate) => {
   return {
     log,
     selectOptions,
-    selectValue: () => selectOptions.find(({ value }) => value === log),
     graphData,
     elements,
+    selectValue,
     onSetLog: handleSetLog
   }
 }

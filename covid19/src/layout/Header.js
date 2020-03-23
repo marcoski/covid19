@@ -21,7 +21,7 @@ const Header = ({ regions }) => {
           </LinkContainer>
           <NavDropdown alignRight title="Regioni" id="regions-dropdown">
             {Object.keys(regions).map(region => (
-              <LinkContainer key={region} to={`/regioni/${regions[region].codice_regione}`}>
+              <LinkContainer key={region} to={`/regioni/${regions[region].slug}`}>
                 <NavDropdown.Item>{region}</NavDropdown.Item>
               </LinkContainer>
             ))}

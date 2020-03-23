@@ -36,23 +36,46 @@
     padding-right: 15px;;
   }
   .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     padding-top: 15px;
     margin-left: 15px;
+    .views {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+    .view {
+      &.aggregate {
+        h3 {
+          margin-bottom: 24px;
+        }
+      }
+      &:last-child {
+        margin-left: 15px;
+      }
+      width: 100%;
+    }
     h3 {
       margin-left: 0;
     }
   }
+  .view-title {
+    margin-bottom: 15px;
+    padding-top: 0;
+    border: 0;
+  }
   .growth {
-    padding-top: 15px;
-    width: 60%;
-    margin-left: 15px;
-    padding-left: 15px;
+    padding: 15px;
     border-left: 1px solid $gray-300;
+    border-right: 1px solid $gray-300;
+    .charts-title {
+      padding-top: 0;
+      border: 0;
+    }
     h3 {
       margin-left: 0;
-    }
-    .recharts-wrapper {
-      width: 100% !important;
     }
   }
 }

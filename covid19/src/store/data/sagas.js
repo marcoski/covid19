@@ -20,6 +20,10 @@ function *readDataByAggregate({ view }) {
   }
   const data = yield call(api.get, endpoint)
   yield put({ type: C.DATA.READ_BY_AGGREGATE, data })
+  if(view === 'regioni') {
+    const data = yield call(api.get, '/api/regioni/by-date')
+    yield put({ type: C.DATA.READ_REGION_AGGREGATE, data })
+  }
 }
 
 function *clearData() {

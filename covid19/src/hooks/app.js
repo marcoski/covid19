@@ -10,7 +10,7 @@ export const viewsDefaultFilters = {
 
 export const viewsGrowthDefaultFilters = {
   'italia': ['totale_attualmente_positivi', 'dimessi_guariti', 'totale_casi'],
-  'regioni': ['totale_attualmente_positivi', 'dimessi_guariti', 'totale_casi'],
+  'regioni': ['totale_casi'],
   'province': []
 }
 

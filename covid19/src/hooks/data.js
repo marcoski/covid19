@@ -35,6 +35,7 @@ export const useRegionsData = region => {
   const regionSelectorByAggregate = useMemo(() => regionSelector('byAggregate'), [])
   const byDate = useSelector(state => region && regionSelectorByDate(state, region.denominazione_regione))
   const byAggregate = useSelector(state => region && regionSelectorByAggregate(state, region.denominazione_regione))
+  const byRegionAggregate = useSelector(state => state.data.byRegionAggregate)
   const { key, onChangeKey } = useTabs('regioni')
   return {
     key: key,
@@ -44,6 +45,7 @@ export const useRegionsData = region => {
     prevDataByAggregate: byAggregate && getPrevData(byAggregate),
     summary: byDate && getLastData(byDate),
     prevSummary: byDate && getPrevData(byDate),
+    byRegionAggregate: byRegionAggregate,
     onChangeKey: onChangeKey
   }
 }

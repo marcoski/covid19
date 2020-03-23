@@ -1,4 +1,5 @@
 const moment = require('moment')
+const slugify = require('slugify')
 module.exports = {
   byDate: data => data.reduce((acc, cur) => {
     const { data, ...rest } = cur
@@ -7,14 +8,21 @@ module.exports = {
   byDateRegione: data => data.reduce((acc, cur) => {
     const { data, stato, denominazione_regione: dr, codice_regione, lat, long, ...rest } = cur
     const date = moment(data).format('YYYY-MM-DD')
-    return { 
-      ...acc, [date]: { ...acc[date], [dr]: { regione: { codice_regione, lat, long, denominazione_regione: dr }, ...rest } } 
+    return {
+      ...acc,
+      [date]: {
+        ...acc[date],
+        [dr]: {
+          regione: { codice_regione, lat, long, denominazione_regione: dr, slug: slugify(dr, { lower: true }) },
+          ...rest
+        }
+      }
     }
   }, {}),
   byDateProvincia: data => data.reduce((acc, cur) => {
     const { data, denominazione_provincia: dp, ...rest } = cur
     const date = moment(data).format('YYYY-MM-DD')
-    return { ...acc, [date]: { ...acc[date], [dp]: { ...rest } } }
+    return { ...acc, [date]: { ...acc[date], [dp]: { ...rest, slug: slugify(dp, { lower: true }) } } }
   }, {}),
   byProvincia: data => data.reduce((acc, cur) => {
     const {
@@ -29,7 +37,7 @@ module.exports = {
     return {
       ...acc,
       [dp]: {
-        provincia: { codice_provincia, lat, long }, totale_casi: acc[dp] ? totale_casi : 0
+        provincia: { codice_provincia, lat, long, slug: slugify(dp, { lower: true }) }, totale_casi: acc[dp] ? totale_casi : 0
       }
     }
   }, {}),
@@ -44,8 +52,8 @@ module.exports = {
       totale_casi
     } = cur
     const date = moment(data).format('YYYY-MM-DD')
-    if(dr === 'denominazione_regione') return acc
-    if(lat === 0) return acc
+    if (dr === 'denominazione_regione') return acc
+    if (lat === 0) return acc
     return {
       ...acc,
       [dr]: {
@@ -54,8 +62,8 @@ module.exports = {
           ...(acc[dr] ? acc[dr][date] : {}),
           [dp]: {
             ...(!acc[dr] ? {} : !acc[dr][date] ? {} : acc[dr][date][dp]),
-            provincia: { denominazione_provincia: dp, codice_provincia, lat, long },
-            totale_casi 
+            provincia: { denominazione_provincia: dp, codice_provincia, lat, long, slug: slugify(dp, { lower: true }) },
+            totale_casi
           }
         }
       }
@@ -68,7 +76,7 @@ module.exports = {
       ...acc,
       [dr]: {
         ...acc[dr],
-        regione: { stato, denominazione_regione: dr, codice_regione, lat, long },
+        regione: { stato, denominazione_regione: dr, codice_regione, lat, long, slug: slugify(dr, { lower: true }) },
         [date]: {
           ricoverati_con_sintomi: acc[dr] ? cur.ricoverati_con_sintomi : 0,
           terapia_intensiva: acc[dr] ? cur.terapia_intensiva : 0,
@@ -88,7 +96,7 @@ module.exports = {
     const { stato, codice_regione, denominazione_regione: dr, lat, long } = cur
     return {
       ...acc,
-      [dr]: { stato, codice_regione, denominazione_regione: dr, lat, long }
+      [dr]: { stato, codice_regione, denominazione_regione: dr, lat, long, slug: slugify(dr, { lower: true }) }
     }
   }, {})
 }
