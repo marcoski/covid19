@@ -12,6 +12,9 @@
 # production
 */build
 
+#dinamo
+/dinamo
+
 # misc
 
 .DS_Store
