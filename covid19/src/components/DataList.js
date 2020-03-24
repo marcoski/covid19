@@ -37,6 +37,10 @@ export const MinimalDataList = ({ data }) => {
   )
 }
 
+export const MinimalDistrictDataList = ({ data, prev }) => {
+  return <DistrictDataList data={data} prev={prev} minimal />
+}
+
 export const DistrictDataList = ({ data, prev, minimal }) => {
   const elements = getDataListKeysMap()
     .filter(el => (['totale_casi'].includes(el.key)))

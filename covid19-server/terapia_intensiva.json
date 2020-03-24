@@ -1,0 +1,22 @@
+[
+  { "regione": "Abruzzo", "totale": 77 },
+  { "regione": "Basilicata", "totale": 45 },
+  { "regione": "Calabria", "totale": 153 },  
+  { "regione": "Campania", "totale": 436 },
+  { "regione": "Emilia Romagna", "totale": 304 },
+  { "regione": "Friuli Venezia Giulia", "totale": 90 },
+  { "regione": "Lazio", "totale": 417 },
+  { "regione": "Liguria", "totale": 131 },
+  { "regione": "Lombardia", "totale": 434 },
+  { "regione": "Marche", "totale": 80 },
+  { "regione": "Molise", "totale": 25 },
+  { "regione": "Piemonte", "totale": 317 },
+  { "regione": "P.A. Bolzano", "totale": 14 },
+  { "regione": "Puglia", "totale": 220 },
+  { "regione": "Sardegna", "totale": 96 },
+  { "regione": "Sicilia", "totale": 315 },
+  { "regione": "Toscana", "totale": 258 },
+  { "regione": "Umbria", "totale": 43 },
+  { "regione": "Valle d'Aosta", "totale": 12 },
+  { "regione": "Veneto", "totale": 132 }
+]

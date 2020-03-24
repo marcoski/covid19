@@ -1,49 +1,12 @@
 import React from 'react'
 import CovidRegionMap from './CovidRegionMap'
-import Overlay from 'react-bootstrap/Overlay'
-import Popover from 'react-bootstrap/Popover'
-import DataList, { DistrictDataList } from '../DataList'
+import { DistrictDataList, MinimalDistrictDataList } from '../DataList'
 import { useMap } from '../../hooks/map'
-import DailyGrow from '../charts/DailyGrow'
+import Summary, { AggregateSummary } from './components/Summary'
+import ChartContainer from './components/ChartContainer'
+import MapPopover from './components/MapPopover'
 
-const MapPopover = ({ show, target, selected }) => {
-  return (
-    <Overlay
-      show={show}
-      target={target}
-      placement="top"
-      container={document.getElementsByTagName('body')[0]}
-      containerPadding={20}
-    >
-      {props => {
-        let position = { x: 0, y: 0 }
-        if (target !== null) {
-          const { x, y, width } = target.getBoundingClientRect()
-          position = { x: x + width, y }
-        }
-        return (
-          <>
-            {selected !== null &&
-              <Popover
-                className="covid19__popover"
-                style={{ ...props.style, opacity: show ? 1 : 0, left: position.x, top: position.y }}
-              >
-                <Popover.Title as="h3">Situazione {selected.provincia.denominazione_provincia}</Popover.Title>
-                <Popover.Content>
-                  <DistrictDataList minimal data={selected} />
-                </Popover.Content>
-              </Popover>
-            }
-          </>
-        )
-      }}
-    </Overlay>
-  )
-}
-
-const CovidRegionMapContainer = (
-  { region, data, prev, lastUpdateStr, summary, prevSummary, dataByDate, dataAggregateByDate }
-) => {
+const CovidRegionMapContainer = ({ region, data, prev, lastUpdateStr, summary, prevSummary, dataByDate, dataAggregateByDate }) => {
   const {
     popoverShow,
     popoverTarget,
@@ -71,35 +34,30 @@ const CovidRegionMapContainer = (
               onChangeCurrentAggregate={events.onChangeCurrentAggregate}
               currentAggregate={currentAggregate}
             />
-            <MapPopover show={popoverShow} target={popoverTarget} selected={selected} />
+            <MapPopover 
+              show={popoverShow} 
+              target={popoverTarget} 
+              selected={selected}
+              title={selected !== null && selected.provincia.denominazione_provincia}
+              list={MinimalDistrictDataList}
+            />
           </div>
           <div className="content-container">
             <div className="content">
-              <div className="summary">
-                <h3>Situazione {region.denominazione_regione} <span className="small">@ {lastUpdateStr}</span></h3>
-                <DataList data={summary} prev={prevSummary} radio />
-              </div>
-              <div className="aggregate">
-                {currentAggregate !== '' &&
-                  <>
-                    <h3>
-                      <span>{currentAggregate} <span className="small">@ {lastUpdateStr}</span></span>
-                      <a href="#" role="button" onClick={handleClear}>
-                        <span className="fas fa-times"></span>
-                      </a>
-                    </h3>
-                    <DistrictDataList data={data[currentAggregate]} prev={prev[currentAggregate]} />
-                  </>
-                }
-              </div>
+              <Summary title={`Situazione ${region.denominazione_regione}`} update={lastUpdateStr} data={summary} prev={prevSummary} />
+              {currentAggregate !== '' &&
+                <AggregateSummary 
+                  update={lastUpdateStr}
+                  title={currentAggregate}
+                  onClear={handleClear}
+                  data={data[currentAggregate]}
+                  prev={prev[currentAggregate]}
+                  list={DistrictDataList}
+                />
+              }
             </div>
             <div className="grow">
-              <h3>Incrementi giornalieri</h3>
-              <DailyGrow 
-                data={dataByDate} 
-                aggregate={dataAggregateByDate} 
-                currentAggregate={currentAggregate}  
-              />
+              <ChartContainer data={dataByDate} aggregate={dataAggregateByDate} currentAggregate={currentAggregate} />
             </div>
           </div>
         </>

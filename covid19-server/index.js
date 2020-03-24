@@ -34,6 +34,13 @@ app.get('/api/:model/by-date', (req, res) => {
   logger.info('request on %s for model %s', req.url, req.params.model)
   res.json(repository.readByDate(req.params.model))
 })
+app.get('/api/:model/by-date/latest', (req, res) => {
+  logger.info('request on %s for model %s', req.url, req.params.model)
+  const data = repository.readByDate(req.params.model)
+  const latest = data[Object.keys(data)[Object.keys(data).length - 1]]
+  res.json(latest)
+})
+
 app.get('/api/:model/by-regione', (req, res) => {
   logger.info('request on %s for model %s', req.url, req.params.model)
   res.json(repository.readByRegione(req.params.model))

@@ -13,7 +13,6 @@ describe('READ COVID19 DATA REGIONAL BASED', () => {
       .get('/api/regioni/by-date')
       .end((err, res) => {
         res.should.have.status(200)
-        console.log(res.body)
         res.body.should.be.a('object')
         done()
       })

@@ -17,4 +17,13 @@ describe('READ COVID19 DATA NATIONAL BASED', () => {
         done()
       })
   })
+  it.only('should return latest national data', done => {
+    chai.request(server)
+      .get('/api/italia/by-date/latest')
+      .end((err, res) => {
+        res.should.have.status(200)
+        console.log(res.body)
+        done()
+      })
+  })
 })
