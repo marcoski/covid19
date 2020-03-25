@@ -37,8 +37,18 @@ app.get('/api/:model/by-date', (req, res) => {
 app.get('/api/:model/by-date/latest', (req, res) => {
   logger.info('request on %s for model %s', req.url, req.params.model)
   const data = repository.readByDate(req.params.model)
+  const lastUpdate = JSON.parse(fs.readFileSync(path.resolve(__dirname, './data/last-update.json')).toString())
   const latest = data[Object.keys(data)[Object.keys(data).length - 1]]
-  res.json(latest)
+  const lastLatest = data[Object.keys(data)[Object.keys(data).length - 2]]
+  res.json({
+    totale_casi: latest.totale_casi,
+    totale_casi_diff: latest.totale_casi - lastLatest.totale_casi,
+    dimessi_guariti: latest.dimessi_guariti,
+    dimessi_guariti_diff: latest.dimessi_guariti - lastLatest.dimessi_guariti,
+    deceduti: latest.deceduti,
+    deceduti_diff: latest.deceduti - lastLatest.deceduti,
+    lastUpdate: lastUpdate.data
+  })
 })
 
 app.get('/api/:model/by-regione', (req, res) => {
