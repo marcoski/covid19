@@ -23,7 +23,7 @@ export const getDataAggregateKeysMap = (filters, currentAggregate) => {
   const aggregateKeysMap = {
     key: `${elements[0].key}_${currentAggregate.toLowerCase()}`,
     label: `${elements[0].label} (${currentAggregate})`,
-    fill: colors.red
+    fill: colors.cyan
   }
   return [elements[0], aggregateKeysMap]
 }

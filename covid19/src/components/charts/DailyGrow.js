@@ -10,6 +10,7 @@ import CovidLegend from './CovidLegend'
 const DailyGrow = ({ data, aggregate, currentAggregate }) => {
   const { log, graphData, elements, onSetLog, selectOptions, selectValue } = useDailyGrow(data, aggregate, currentAggregate)
   const handleSetLog = ({ value }) => onSetLog(value)
+  console.log(elements)
   return (
     <div className="grow">
       <div className="charts-title">
