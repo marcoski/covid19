@@ -6,8 +6,9 @@ export const keysMap = {
   terapia_intensiva: 'In terapia intensiva',
   totale_ospedalizzati: 'Totale ospedalizzati',
   isolamento_domiciliare: 'In isolamento domiciliare',
-  totale_attualmente_positivi: 'Totale attualmente positivi',
-  nuovi_attualmente_positivi: 'Nuovi attualmente positivi',
+  totale_positivi: 'Totale positivi',
+  variazione_totale_positivi: 'Variazione totale positivi',
+  nuovi_positivi: 'Nuovi Positivi',
   dimessi_guariti: 'Guariti',
   deceduti: 'Deceduti',
   totale_casi: 'Totale casi',
@@ -19,17 +20,18 @@ export const colorMap = {
   terapia_intensiva: colors.indigo,
   totale_ospedalizzati: colors.purple,
   isolamento_domiciliare: colors.pink,
-  totale_attualmente_positivi: colors.orange,
+  totale_positivi: colors.orange,
   dimessi_guariti: colors.teal,
-  nuovi_attualmente_positivi: colors.yellow,
+  variazione_totale_positivi: colors.yellow,
   deceduti: colors.green,
+  nuovi_positivi: colors.cyan,
   totale_casi: colors.red,
   tamponi: colors.cyan
 }
 
 export const getDataListKeysMap = () => Object.keys(keysMap).map(key => {
   let intent = null
-  if (['terapia_intensiva', 'totale_ospedalizzati', 'nuovi_attualmente_positivi'].includes(key)) intent = 'intent-warning'
+  if (['terapia_intensiva', 'totale_ospedalizzati', 'variazione_totale_positivi'].includes(key)) intent = 'intent-warning'
   if (['dimessi_guariti', 'tamponi'].includes(key)) intent = 'intent-success'
   if (['totale_casi', 'deceduti'].includes(key)) intent = 'intent-danger'
   return { key: key, label: keysMap[key], intent }

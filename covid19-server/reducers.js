@@ -82,7 +82,7 @@ module.exports = {
           terapia_intensiva: acc[dr] ? cur.terapia_intensiva : 0,
           totale_ospedalizzati: acc[dr] ? cur.totale_ospedalizzati : 0,
           isolamento_domiciliare: acc[dr] ? cur.isolamento_domiciliare : 0,
-          totale_attualmente_positivi: acc[dr] ? cur.totale_attualmente_positivi : 0,
+          totale_positivi: acc[dr] ? cur.totale_positivi : 0,
           nuovi_attulmente_positivi: acc[dr] ? cur.nuovi_attulmente_positivi : 0,
           dimessi_guariti: acc[dr] ? cur.dimessi_guariti : 0,
           deceduti: acc[dr] ? cur.deceduti : 0,

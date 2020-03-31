@@ -3,13 +3,13 @@ import { useCallback, useEffect } from "react"
 import { useLocation, useHistory } from "react-router-dom"
 
 export const viewsDefaultFilters = {
-  'italia': ['nuovi_attualmente_positivi'],
+  'italia': ['variazione_totale_positivi'],
   'regioni': ['totale_casi'],
   'province': []
 }
 
 export const viewsGrowthDefaultFilters = {
-  'italia': ['totale_attualmente_positivi', 'dimessi_guariti', 'totale_casi'],
+  'italia': ['totale_positivi', 'dimessi_guariti', 'totale_casi'],
   'regioni': ['totale_casi'],
   'province': []
 }
